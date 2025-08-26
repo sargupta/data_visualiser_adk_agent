@@ -1,0 +1,7 @@
+dash==2.16.1
+dash-bootstrap-components==1.6.0
+pandas==2.2.2
+numpy==1.26.4
+Flask==3.0.3
+plotly==5.22.0
+# google-adk is not required and should not be added here.

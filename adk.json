@@ -1,0 +1,6 @@
+{
+    "agents": {
+        "path": "main_agent",
+        "entrypoint": "__init__.py"
+    }
+}

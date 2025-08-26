@@ -1,0 +1,201 @@
+app_id,app_name,vulnerability_id,vulnerability_name,vulnerability_solution,solution_category,criticality,scan_date
+APP-008,App-Helix,CVE-2019-33098,Apache Struts RCE,Install security update addressing the vulnerability.,Patch,Medium,5/27/2025
+APP-006,App-Flux,CVE-2021-5165,Unauthenticated GraphQL Introspection,Harden configuration per CIS Benchmark.,Configuration,High,9/3/2024
+APP-036,App-Javelin,QID-81426,Log4j Remote Code Execution,Disable insecure protocol/cipher and enforce TLS 1.2+.,Configuration,Medium,8/24/2024
+APP-011,App-Kilo,CVE-2020-37421,Open Port: Redis,Upgrade component to a supported LTS release.,Upgrade,Critical,10/9/2024
+APP-023,App-Wyvern,QID-15695,Unpatched Linux Kernel,Upgrade to the fixed version per vendor advisory.,Patch,Critical,1/18/2025
+APP-040,App-Nimbus,CVE-2024-26203,Outdated Nginx Version,Disable insecure protocol/cipher and enforce TLS 1.2+.,Configuration,Low,12/18/2024
+APP-007,App-Ganymede,QID-93320,Insecure CORS Policy,Disable insecure protocol/cipher and enforce TLS 1.2+.,Configuration,High,7/30/2025
+APP-018,App-Raptor,CVE-2024-84227,SQL Injection in Login,Disable insecure protocol/cipher and enforce TLS 1.2+.,Configuration,High,7/14/2025
+APP-036,App-Javelin,CVE-2025-43504,JWT None Algorithm Accepted,Upgrade to the fixed version per vendor advisory.,Patch,High,9/23/2024
+APP-014,App-Nova,QID-95909,Exposed .git Directory,Rotate credentials and enforce MFA.,Mitigation,High,1/3/2025
+APP-009,App-Ion,QID-44438,Hardcoded Secrets in Repo,Add input validation and sanitize user input.,Mitigation,High,10/30/2024
+APP-033,App-Gladius,CVE-2016-7175,Command Injection,Restrict access using firewall rules/VPC SC.,Configuration,High,9/22/2024
+APP-025,App-Yonder,QID-79352,Insecure CORS Policy,Install security update addressing the vulnerability.,Patch,Medium,8/5/2025
+APP-035,App-Indigo,QID-24621,Server-Side Request Forgery,Implement WAF rule to block exploit patterns.,Mitigation,High,1/2/2025
+APP-033,App-Gladius,QID-91959,Kubernetes Dashboard Exposed,Harden configuration per CIS Benchmark.,Configuration,High,11/11/2024
+APP-035,App-Indigo,QID-52487,Host Header Injection,Apply vendor patch to latest stable version.,Patch,Low,1/25/2025
+APP-016,App-Praxis,CVE-2018-75364,Weak TLS Configuration,Implement WAF rule to block exploit patterns.,Mitigation,Low,5/20/2025
+APP-009,App-Ion,CVE-2025-63296,Default Credentials Present,Migrate to latest major version per release notes.,Upgrade,Low,3/25/2025
+APP-014,App-Nova,QID-50857,Cross-Site Request Forgery,Replace deprecated library with maintained version.,Upgrade,Low,4/9/2025
+APP-008,App-Helix,CVE-2018-9392,Hardcoded Secrets in Repo,Restrict access using firewall rules/VPC SC.,Configuration,High,9/26/2024
+APP-004,App-Delta,CVE-2016-5117,JWT None Algorithm Accepted,Disable insecure protocol/cipher and enforce TLS 1.2+.,Configuration,Medium,12/8/2024
+APP-035,App-Indigo,CVE-2024-76525,Default Credentials Present,Add input validation and sanitize user input.,Mitigation,Critical,10/9/2024
+APP-028,App-Borealis,CVE-2021-54883,Unpatched Linux Kernel,Apply vendor patch to latest stable version.,Patch,High,2/10/2025
+APP-007,App-Ganymede,QID-80292,Hardcoded Secrets in Repo,Disable insecure protocol/cipher and enforce TLS 1.2+.,Configuration,Critical,4/14/2025
+APP-016,App-Praxis,CVE-2022-73132,SQL Injection in Login,Apply vendor patch to latest stable version.,Patch,Low,12/20/2024
+APP-011,App-Kilo,QID-38016,Open Port: MongoDB,Apply vendor patch to latest stable version.,Patch,High,3/8/2025
+APP-017,App-Quasar,QID-82845,Insecure SMTP Relay,Harden configuration per CIS Benchmark.,Configuration,High,9/19/2024
+APP-038,App-Lattice,CVE-2015-99038,Cross-Site Request Forgery,Install security update addressing the vulnerability.,Patch,High,5/19/2025
+APP-011,App-Kilo,CVE-2023-11500,Weak TLS Configuration,Install security update addressing the vulnerability.,Patch,Low,3/15/2025
+APP-008,App-Helix,CVE-2018-76880,Exposed .git Directory,Upgrade to the fixed version per vendor advisory.,Patch,Medium,6/6/2025
+APP-034,App-Horizon,QID-97782,Insufficient Input Validation,Disable insecure protocol/cipher and enforce TLS 1.2+.,Configuration,High,7/30/2025
+APP-020,App-Titan,CVE-2020-99548,Insecure SMTP Relay,Rotate credentials and enforce MFA.,Mitigation,Low,10/11/2024
+APP-005,App-Echo,CVE-2018-67307,Cross-Site Request Forgery,Upgrade component to a supported LTS release.,Upgrade,Low,2/26/2025
+APP-019,App-Sol,CVE-2022-72200,Remote Desktop Exposed,Migrate to latest major version per release notes.,Upgrade,Critical,10/28/2024
+APP-017,App-Quasar,CVE-2016-98310,Insecure Deserialization,Replace deprecated library with maintained version.,Upgrade,Medium,2/12/2025
+APP-014,App-Nova,QID-74032,Misconfigured S3 Public Access Block,Apply vendor patch to latest stable version.,Patch,Medium,1/9/2025
+APP-003,App-Cosmos,QID-93507,OpenSSL Buffer Overflow,Restrict access using firewall rules/VPC SC.,Configuration,High,8/17/2025
+APP-028,App-Borealis,CVE-2015-15663,Clickjacking,Upgrade to the fixed version per vendor advisory.,Patch,Medium,11/4/2024
+APP-028,App-Borealis,CVE-2015-41404,Default Credentials Present,Upgrade component to a supported LTS release.,Upgrade,Medium,7/28/2025
+APP-007,App-Ganymede,CVE-2023-54264,Unpatched Linux Kernel,Harden configuration per CIS Benchmark.,Configuration,Low,11/19/2024
+APP-027,App-Aurora,QID-53540,Apache Struts RCE,Disable insecure protocol/cipher and enforce TLS 1.2+.,Configuration,Critical,8/15/2025
+APP-007,App-Ganymede,CVE-2015-62694,Insecure CORS Policy,Add input validation and sanitize user input.,Mitigation,High,12/15/2024
+APP-015,App-Orion,QID-62227,Apache Struts RCE,Upgrade component to a supported LTS release.,Upgrade,Low,1/10/2025
+APP-023,App-Wyvern,QID-80282,Deserialization of Untrusted Data,Apply vendor patch to latest stable version.,Patch,Low,1/1/2025
+APP-012,App-Lumen,QID-24208,Unauthenticated GraphQL Introspection,Migrate to latest major version per release notes.,Upgrade,Medium,4/1/2025
+APP-039,App-Monolith,CVE-2016-51488,Deserialization of Untrusted Data,Upgrade component to a supported LTS release.,Upgrade,Medium,8/21/2024
+APP-034,App-Horizon,CVE-2025-95297,Cross-Site Request Forgery,Replace deprecated library with maintained version.,Upgrade,Critical,7/27/2025
+APP-022,App-Vortex,QID-26334,Open Redirect Vulnerability,Migrate to latest major version per release notes.,Upgrade,High,3/15/2025
+APP-019,App-Sol,QID-65108,Clickjacking,Restrict access using firewall rules/VPC SC.,Configuration,Medium,3/16/2025
+APP-036,App-Javelin,QID-37549,OpenSSL Buffer Overflow,Replace deprecated library with maintained version.,Upgrade,High,8/1/2025
+APP-014,App-Nova,CVE-2022-97463,Deserialization of Untrusted Data,Migrate to latest major version per release notes.,Upgrade,Medium,7/4/2025
+APP-022,App-Vortex,CVE-2018-89184,Cross-Site Scripting,Harden configuration per CIS Benchmark.,Configuration,Critical,12/24/2024
+APP-031,App-Equinox,CVE-2016-60692,Open Redirect Vulnerability,Add input validation and sanitize user input.,Mitigation,High,11/4/2024
+APP-001,App-Atlas,QID-33053,Privilege Escalation via SUID,Install security update addressing the vulnerability.,Patch,High,10/22/2024
+APP-030,App-Draco,QID-79616,Default Credentials Present,Rotate credentials and enforce MFA.,Mitigation,Medium,5/6/2025
+APP-028,App-Borealis,QID-72216,Clickjacking,Upgrade component to a supported LTS release.,Upgrade,Medium,1/9/2025
+APP-034,App-Horizon,QID-45992,Command Injection,Install security update addressing the vulnerability.,Patch,High,1/7/2025
+APP-022,App-Vortex,CVE-2023-11561,Insufficient Input Validation,Disable insecure protocol/cipher and enforce TLS 1.2+.,Configuration,Medium,8/17/2025
+APP-014,App-Nova,QID-53369,SQL Injection in Login,Implement WAF rule to block exploit patterns.,Mitigation,High,3/24/2025
+APP-025,App-Yonder,QID-59857,Unauthenticated GraphQL Introspection,Upgrade to the fixed version per vendor advisory.,Patch,High,3/8/2025
+APP-027,App-Aurora,QID-38906,Cross-Site Request Forgery,Disable insecure protocol/cipher and enforce TLS 1.2+.,Configuration,High,9/4/2024
+APP-025,App-Yonder,CVE-2025-90016,Missing Rate Limiting,Implement WAF rule to block exploit patterns.,Mitigation,Low,5/21/2025
+APP-002,App-Beacon,CVE-2024-74975,Anonymous FTP Enabled,Install security update addressing the vulnerability.,Patch,High,4/14/2025
+APP-012,App-Lumen,CVE-2019-50689,Weak TLS Configuration,Add input validation and sanitize user input.,Mitigation,High,3/3/2025
+APP-018,App-Raptor,CVE-2019-11735,Open Port: MongoDB,Upgrade to the fixed version per vendor advisory.,Patch,High,9/25/2024
+APP-003,App-Cosmos,CVE-2018-27130,Apache Struts RCE,Harden configuration per CIS Benchmark.,Configuration,High,10/18/2024
+APP-037,App-Kepler,QID-43586,Path Traversal in API,Restrict access using firewall rules/VPC SC.,Configuration,Medium,10/18/2024
+APP-011,App-Kilo,QID-13365,Exposed S3 Bucket,Add input validation and sanitize user input.,Mitigation,Low,11/30/2024
+APP-005,App-Echo,QID-23356,Unauthenticated GraphQL Introspection,Install security update addressing the vulnerability.,Patch,Medium,2/14/2025
+APP-035,App-Indigo,QID-19038,Open Port: Redis,Upgrade to the fixed version per vendor advisory.,Patch,Medium,10/14/2024
+APP-028,App-Borealis,QID-30052,Outdated Nginx Version,Restrict access using firewall rules/VPC SC.,Configuration,High,7/20/2025
+APP-018,App-Raptor,QID-70931,Open Redirect Vulnerability,Replace deprecated library with maintained version.,Upgrade,Low,10/4/2024
+APP-018,App-Raptor,QID-70910,SSH Weak Ciphers Enabled,Upgrade component to a supported LTS release.,Upgrade,High,2/3/2025
+APP-012,App-Lumen,QID-43862,Command Injection,Migrate to latest major version per release notes.,Upgrade,Medium,1/9/2025
+APP-036,App-Javelin,CVE-2023-26042,OpenSSL Buffer Overflow,Add input validation and sanitize user input.,Mitigation,Medium,12/22/2024
+APP-031,App-Equinox,QID-22196,Command Injection,Disable insecure protocol/cipher and enforce TLS 1.2+.,Configuration,Medium,1/24/2025
+APP-038,App-Lattice,QID-79588,Outdated Nginx Version,Rotate credentials and enforce MFA.,Mitigation,Medium,2/17/2025
+APP-030,App-Draco,CVE-2019-33951,Server-Side Request Forgery,Disable insecure protocol/cipher and enforce TLS 1.2+.,Configuration,Critical,5/22/2025
+APP-012,App-Lumen,QID-73464,Log4j Remote Code Execution,Upgrade component to a supported LTS release.,Upgrade,Medium,1/19/2025
+APP-015,App-Orion,CVE-2017-40618,Outdated Nginx Version,Upgrade component to a supported LTS release.,Upgrade,Low,5/31/2025
+APP-019,App-Sol,CVE-2025-99669,Default Credentials Present,Install security update addressing the vulnerability.,Patch,High,4/23/2025
+APP-029,App-Cirrus,QID-43092,Missing Rate Limiting,Apply vendor patch to latest stable version.,Patch,High,9/27/2024
+APP-037,App-Kepler,CVE-2025-8026,Misconfigured S3 Public Access Block,Upgrade component to a supported LTS release.,Upgrade,Low,10/20/2024
+APP-036,App-Javelin,CVE-2024-79135,Open Port: MongoDB,Add input validation and sanitize user input.,Mitigation,Low,1/20/2025
+APP-038,App-Lattice,CVE-2019-75531,Open Port: Redis,Apply vendor patch to latest stable version.,Patch,Medium,1/3/2025
+APP-006,App-Flux,CVE-2018-23782,Remote Desktop Exposed,Harden configuration per CIS Benchmark.,Configuration,High,8/8/2025
+APP-039,App-Monolith,QID-40340,XML External Entity (XXE),Migrate to latest major version per release notes.,Upgrade,Low,9/26/2024
+APP-015,App-Orion,CVE-2025-78304,Insecure Cookie Flags,Implement WAF rule to block exploit patterns.,Mitigation,High,7/18/2025
+APP-010,App-Juno,CVE-2017-10359,Server-Side Request Forgery,Migrate to latest major version per release notes.,Upgrade,Medium,6/8/2025
+APP-019,App-Sol,QID-49857,SSH Weak Ciphers Enabled,Migrate to latest major version per release notes.,Upgrade,High,4/2/2025
+APP-006,App-Flux,QID-52247,Weak JWT Signing Key,Apply vendor patch to latest stable version.,Patch,High,8/1/2025
+APP-037,App-Kepler,CVE-2015-89117,Unauthenticated GraphQL Introspection,Disable insecure protocol/cipher and enforce TLS 1.2+.,Configuration,High,4/4/2025
+APP-018,App-Raptor,QID-93202,Kubernetes Dashboard Exposed,Upgrade to the fixed version per vendor advisory.,Patch,High,2/7/2025
+APP-021,App-Umbra,QID-63955,Privilege Escalation via SUID,Migrate to latest major version per release notes.,Upgrade,Low,5/29/2025
+APP-003,App-Cosmos,QID-43082,Insecure SMTP Relay,Upgrade to the fixed version per vendor advisory.,Patch,Low,8/21/2024
+APP-035,App-Indigo,QID-34586,Insecure SMTP Relay,Rotate credentials and enforce MFA.,Mitigation,High,9/16/2024
+APP-014,App-Nova,QID-47752,Server-Side Request Forgery,Implement WAF rule to block exploit patterns.,Mitigation,Critical,7/9/2025
+APP-039,App-Monolith,CVE-2017-41730,Hardcoded Secrets in Repo,Implement WAF rule to block exploit patterns.,Mitigation,High,10/18/2024
+APP-030,App-Draco,QID-75323,Insecure Deserialization,Replace deprecated library with maintained version.,Upgrade,Medium,4/19/2025
+APP-016,App-Praxis,CVE-2023-19958,Insecure SMTP Relay,Harden configuration per CIS Benchmark.,Configuration,High,3/21/2025
+APP-022,App-Vortex,QID-47072,Deserialization of Untrusted Data,Implement WAF rule to block exploit patterns.,Mitigation,High,4/25/2025
+APP-023,App-Wyvern,QID-59441,Missing Rate Limiting,Upgrade component to a supported LTS release.,Upgrade,Low,12/21/2024
+APP-037,App-Kepler,QID-15720,Insecure CORS Policy,Rotate credentials and enforce MFA.,Mitigation,Low,3/4/2025
+APP-025,App-Yonder,QID-26547,Directory Traversal,Upgrade to the fixed version per vendor advisory.,Patch,Critical,4/11/2025
+APP-001,App-Atlas,CVE-2021-86823,Directory Traversal,Add input validation and sanitize user input.,Mitigation,High,8/10/2025
+APP-026,App-Zephyr,QID-79942,Cross-Site Scripting,Migrate to latest major version per release notes.,Upgrade,Medium,4/27/2025
+APP-035,App-Indigo,QID-40771,Outdated jQuery Library,Restrict access using firewall rules/VPC SC.,Configuration,Critical,10/10/2024
+APP-007,App-Ganymede,CVE-2017-91964,SSH Weak Ciphers Enabled,Upgrade to the fixed version per vendor advisory.,Patch,Medium,1/18/2025
+APP-023,App-Wyvern,QID-42007,Outdated Nginx Version,Harden configuration per CIS Benchmark.,Configuration,Critical,6/29/2025
+APP-025,App-Yonder,CVE-2025-32566,Open Redirect Vulnerability,Disable insecure protocol/cipher and enforce TLS 1.2+.,Configuration,Medium,4/13/2025
+APP-017,App-Quasar,CVE-2022-38700,OpenSSL Buffer Overflow,Upgrade to the fixed version per vendor advisory.,Patch,Low,6/17/2025
+APP-020,App-Titan,QID-42780,Misconfigured S3 Public Access Block,Upgrade component to a supported LTS release.,Upgrade,Low,4/25/2025
+APP-007,App-Ganymede,QID-57049,Hardcoded Secrets in Repo,Upgrade component to a supported LTS release.,Upgrade,Low,7/24/2025
+APP-026,App-Zephyr,CVE-2015-75177,Server-Side Request Forgery,Add input validation and sanitize user input.,Mitigation,Medium,12/16/2024
+APP-039,App-Monolith,QID-34920,Unpatched Linux Kernel,Restrict access using firewall rules/VPC SC.,Configuration,Critical,7/8/2025
+APP-003,App-Cosmos,QID-85965,Exposed S3 Bucket,Harden configuration per CIS Benchmark.,Configuration,Low,2/4/2025
+APP-027,App-Aurora,QID-80701,Kubernetes Dashboard Exposed,Upgrade component to a supported LTS release.,Upgrade,High,4/24/2025
+APP-019,App-Sol,CVE-2016-62385,Missing Rate Limiting,Restrict access using firewall rules/VPC SC.,Configuration,Medium,3/12/2025
+APP-036,App-Javelin,QID-11824,Outdated Nginx Version,Upgrade to the fixed version per vendor advisory.,Patch,High,7/31/2025
+APP-017,App-Quasar,CVE-2021-84695,Unauthenticated GraphQL Introspection,Disable insecure protocol/cipher and enforce TLS 1.2+.,Configuration,Critical,6/4/2025
+APP-021,App-Umbra,QID-18285,Open Redirect Vulnerability,Migrate to latest major version per release notes.,Upgrade,High,10/31/2024
+APP-003,App-Cosmos,CVE-2019-65569,Outdated jQuery Library,Restrict access using firewall rules/VPC SC.,Configuration,Critical,4/10/2025
+APP-024,App-Xenon,QID-30253,Cross-Site Request Forgery,Upgrade to the fixed version per vendor advisory.,Patch,Medium,1/11/2025
+APP-003,App-Cosmos,CVE-2018-59115,Outdated Nginx Version,Upgrade component to a supported LTS release.,Upgrade,Low,2/25/2025
+APP-035,App-Indigo,CVE-2015-53184,Unpatched Linux Kernel,Upgrade to the fixed version per vendor advisory.,Patch,Critical,12/7/2024
+APP-039,App-Monolith,CVE-2015-44713,Apache Struts RCE,Harden configuration per CIS Benchmark.,Configuration,Medium,5/31/2025
+APP-014,App-Nova,CVE-2018-31539,Unauthenticated GraphQL Introspection,Upgrade to the fixed version per vendor advisory.,Patch,Low,11/3/2024
+APP-009,App-Ion,CVE-2019-23871,Cross-Site Request Forgery,Harden configuration per CIS Benchmark.,Configuration,High,12/20/2024
+APP-038,App-Lattice,CVE-2015-23838,Insufficient Input Validation,Restrict access using firewall rules/VPC SC.,Configuration,High,10/18/2024
+APP-005,App-Echo,CVE-2022-48453,XML External Entity (XXE),Rotate credentials and enforce MFA.,Mitigation,High,7/1/2025
+APP-003,App-Cosmos,CVE-2019-61036,Host Header Injection,Upgrade to the fixed version per vendor advisory.,Patch,Medium,3/27/2025
+APP-007,App-Ganymede,QID-20589,Command Injection,Harden configuration per CIS Benchmark.,Configuration,Critical,7/6/2025
+APP-038,App-Lattice,QID-88301,Clickjacking,Rotate credentials and enforce MFA.,Mitigation,Medium,10/10/2024
+APP-008,App-Helix,CVE-2018-57370,Clickjacking,Add input validation and sanitize user input.,Mitigation,Medium,3/13/2025
+APP-027,App-Aurora,QID-50963,Privilege Escalation via SUID,Upgrade component to a supported LTS release.,Upgrade,Medium,4/20/2025
+APP-005,App-Echo,CVE-2016-13219,Cross-Site Scripting,Upgrade component to a supported LTS release.,Upgrade,Medium,6/17/2025
+APP-036,App-Javelin,QID-26021,Clickjacking,Migrate to latest major version per release notes.,Upgrade,Low,3/25/2025
+APP-004,App-Delta,CVE-2024-41953,Weak Password Policy,Harden configuration per CIS Benchmark.,Configuration,Medium,12/13/2024
+APP-007,App-Ganymede,QID-25058,Unpatched Linux Kernel,Disable insecure protocol/cipher and enforce TLS 1.2+.,Configuration,Medium,7/5/2025
+APP-040,App-Nimbus,QID-96223,Clickjacking,Apply vendor patch to latest stable version.,Patch,High,1/26/2025
+APP-022,App-Vortex,QID-28776,Unpatched Linux Kernel,Apply vendor patch to latest stable version.,Patch,Medium,9/5/2024
+APP-006,App-Flux,QID-65028,Host Header Injection,Upgrade component to a supported LTS release.,Upgrade,High,2/3/2025
+APP-037,App-Kepler,CVE-2016-7895,Weak JWT Signing Key,Install security update addressing the vulnerability.,Patch,Critical,4/4/2025
+APP-028,App-Borealis,QID-64287,Command Injection,Restrict access using firewall rules/VPC SC.,Configuration,Critical,3/29/2025
+APP-008,App-Helix,QID-87743,Weak Password Policy,Upgrade component to a supported LTS release.,Upgrade,High,6/23/2025
+APP-004,App-Delta,CVE-2018-40507,OpenSSL Buffer Overflow,Replace deprecated library with maintained version.,Upgrade,High,8/24/2024
+APP-032,App-Fathom,CVE-2017-17932,Open Port: Redis,Upgrade component to a supported LTS release.,Upgrade,High,9/11/2024
+APP-028,App-Borealis,QID-51033,Apache Struts RCE,Rotate credentials and enforce MFA.,Mitigation,Medium,1/16/2025
+APP-008,App-Helix,QID-32527,Anonymous FTP Enabled,Upgrade component to a supported LTS release.,Upgrade,High,10/14/2024
+APP-016,App-Praxis,CVE-2024-53487,Open Port: Redis,Add input validation and sanitize user input.,Mitigation,Medium,12/12/2024
+APP-022,App-Vortex,CVE-2016-67910,Remote Desktop Exposed,Disable insecure protocol/cipher and enforce TLS 1.2+.,Configuration,High,7/17/2025
+APP-010,App-Juno,CVE-2016-20194,Hardcoded Secrets in Repo,Restrict access using firewall rules/VPC SC.,Configuration,Critical,7/22/2025
+APP-005,App-Echo,QID-70811,Kubernetes Dashboard Exposed,Migrate to latest major version per release notes.,Upgrade,High,4/3/2025
+APP-005,App-Echo,QID-49691,XML External Entity (XXE),Upgrade to the fixed version per vendor advisory.,Patch,High,1/26/2025
+APP-030,App-Draco,QID-58331,SSH Weak Ciphers Enabled,Install security update addressing the vulnerability.,Patch,Low,10/6/2024
+APP-040,App-Nimbus,CVE-2023-51394,Weak JWT Signing Key,Rotate credentials and enforce MFA.,Mitigation,Medium,2/1/2025
+APP-039,App-Monolith,QID-18109,XML External Entity (XXE),Upgrade to the fixed version per vendor advisory.,Patch,Low,10/3/2024
+APP-033,App-Gladius,QID-67377,Kubernetes Dashboard Exposed,Disable insecure protocol/cipher and enforce TLS 1.2+.,Configuration,High,1/12/2025
+APP-025,App-Yonder,CVE-2020-89984,Open Port: MongoDB,Upgrade component to a supported LTS release.,Upgrade,High,6/2/2025
+APP-025,App-Yonder,CVE-2019-95861,Weak Password Policy,Upgrade component to a supported LTS release.,Upgrade,Medium,11/1/2024
+APP-023,App-Wyvern,QID-96787,Exposed S3 Bucket,Restrict access using firewall rules/VPC SC.,Configuration,Medium,10/3/2024
+APP-020,App-Titan,CVE-2021-85343,Clickjacking,Install security update addressing the vulnerability.,Patch,Medium,5/8/2025
+APP-024,App-Xenon,CVE-2020-41483,Apache Struts RCE,Replace deprecated library with maintained version.,Upgrade,Critical,10/30/2024
+APP-010,App-Juno,CVE-2019-14256,SQL Injection in Login,Migrate to latest major version per release notes.,Upgrade,Critical,3/1/2025
+APP-010,App-Juno,CVE-2017-91812,Remote Desktop Exposed,Implement WAF rule to block exploit patterns.,Mitigation,High,8/2/2025
+APP-016,App-Praxis,CVE-2024-38346,SSH Weak Ciphers Enabled,Disable insecure protocol/cipher and enforce TLS 1.2+.,Configuration,Low,4/18/2025
+APP-013,App-Mirage,QID-67749,Outdated Nginx Version,Replace deprecated library with maintained version.,Upgrade,High,3/23/2025
+APP-011,App-Kilo,CVE-2024-19140,Log4j Remote Code Execution,Add input validation and sanitize user input.,Mitigation,Medium,10/12/2024
+APP-034,App-Horizon,QID-31012,Insecure Deserialization,Rotate credentials and enforce MFA.,Mitigation,Critical,4/1/2025
+APP-006,App-Flux,QID-13495,JWT None Algorithm Accepted,Upgrade to the fixed version per vendor advisory.,Patch,High,12/19/2024
+APP-025,App-Yonder,QID-13694,Cross-Site Scripting,Install security update addressing the vulnerability.,Patch,Medium,11/3/2024
+APP-009,App-Ion,QID-28191,Outdated jQuery Library,Rotate credentials and enforce MFA.,Mitigation,Critical,9/30/2024
+APP-002,App-Beacon,QID-81932,Insecure Cookie Flags,Upgrade to the fixed version per vendor advisory.,Patch,High,10/22/2024
+APP-004,App-Delta,QID-91633,Hardcoded Secrets in Repo,Apply vendor patch to latest stable version.,Patch,Medium,5/3/2025
+APP-039,App-Monolith,CVE-2015-83831,Cross-Site Request Forgery,Disable insecure protocol/cipher and enforce TLS 1.2+.,Configuration,High,7/1/2025
+APP-023,App-Wyvern,CVE-2024-55600,Hardcoded Secrets in Repo,Upgrade component to a supported LTS release.,Upgrade,Low,5/26/2025
+APP-033,App-Gladius,QID-61177,Deserialization of Untrusted Data,Install security update addressing the vulnerability.,Patch,High,2/28/2025
+APP-017,App-Quasar,CVE-2020-9855,Apache Struts RCE,Install security update addressing the vulnerability.,Patch,Medium,2/7/2025
+APP-009,App-Ion,CVE-2020-72567,Outdated jQuery Library,Rotate credentials and enforce MFA.,Mitigation,High,11/22/2024
+APP-009,App-Ion,CVE-2022-5847,SQL Injection in Login,Apply vendor patch to latest stable version.,Patch,Low,1/29/2025
+APP-020,App-Titan,QID-72049,Deserialization of Untrusted Data,Install security update addressing the vulnerability.,Patch,Critical,2/19/2025
+APP-004,App-Delta,QID-58237,Missing Rate Limiting,Rotate credentials and enforce MFA.,Mitigation,High,3/6/2025
+APP-022,App-Vortex,QID-75211,Kubernetes Dashboard Exposed,Upgrade component to a supported LTS release.,Upgrade,Medium,9/30/2024
+APP-028,App-Borealis,QID-48504,Weak JWT Signing Key,Apply vendor patch to latest stable version.,Patch,High,1/19/2025
+APP-020,App-Titan,CVE-2024-95065,SSH Weak Ciphers Enabled,Add input validation and sanitize user input.,Mitigation,High,2/17/2025
+APP-040,App-Nimbus,CVE-2019-84816,Open Port: Redis,Add input validation and sanitize user input.,Mitigation,High,8/3/2025
+APP-011,App-Kilo,QID-98878,Apache Struts RCE,Apply vendor patch to latest stable version.,Patch,Critical,7/17/2025
+APP-024,App-Xenon,CVE-2021-75349,Outdated Nginx Version,Add input validation and sanitize user input.,Mitigation,High,9/29/2024
+APP-037,App-Kepler,QID-62171,Default Credentials Present,Upgrade component to a supported LTS release.,Upgrade,Low,9/3/2024
+APP-012,App-Lumen,CVE-2023-51723,Command Injection,Replace deprecated library with maintained version.,Upgrade,Medium,12/8/2024
+APP-040,App-Nimbus,CVE-2022-27237,Weak Password Policy,Upgrade to the fixed version per vendor advisory.,Patch,Critical,8/21/2025
+APP-029,App-Cirrus,QID-97535,Cross-Site Scripting,Install security update addressing the vulnerability.,Patch,High,1/21/2025
+APP-011,App-Kilo,CVE-2017-48381,Misconfigured S3 Public Access Block,Apply vendor patch to latest stable version.,Patch,Medium,12/20/2024
+APP-032,App-Fathom,QID-85009,Apache Struts RCE,Rotate credentials and enforce MFA.,Mitigation,Critical,10/4/2024
+APP-005,App-Echo,QID-72739,Exposed S3 Bucket,Rotate credentials and enforce MFA.,Mitigation,Critical,1/30/2025
+APP-005,App-Echo,QID-77811,SSH Weak Ciphers Enabled,Restrict access using firewall rules/VPC SC.,Configuration,Medium,11/22/2024
+APP-009,App-Ion,CVE-2023-8263,Open Port: Redis,Upgrade component to a supported LTS release.,Upgrade,Critical,8/19/2025
+APP-015,App-Orion,QID-20336,Unpatched Linux Kernel,Restrict access using firewall rules/VPC SC.,Configuration,Low,1/8/2025
+APP-009,App-Ion,CVE-2019-81534,Misconfigured S3 Public Access Block,Restrict access using firewall rules/VPC SC.,Configuration,Low,11/7/2024
+APP-011,App-Kilo,CVE-2024-45252,Open Redirect Vulnerability,Apply vendor patch to latest stable version.,Patch,Critical,7/15/2025
