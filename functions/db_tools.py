@@ -3,12 +3,28 @@ from google.adk.tools.function_tool import FunctionTool
 import ast
 import logging
 import pandas as pd
+import numpy as np
 from typing import Optional
 from dash import dcc, html
 import plotly.express as px
 from typing import Dict, Any
+import json
+import matplotlib.pyplot as plt
+import seaborn as sns
+import base64
+import io
+import os
 
 logger = logging.getLogger(__name__)
+# Helper: convert numpy scalars to native Python types
+def to_python_scalar(value):
+    if isinstance(value, (np.generic,)):
+        try:
+            return value.item()
+        except Exception:
+            return str(value)
+    return value
+
 
 # Initialize DataFrame
 try:
@@ -27,10 +43,18 @@ def get_schema(input: Optional[dict] = None) -> dict:
         dict: schema description
     """
     try:
+        # Prepare JSON-serializable sample rows
+        sample_df = df.head(3).copy()
+        sample_df = sample_df.where(pd.notnull(sample_df), None)
+
+        sample_records = []
+        for record in sample_df.to_dict(orient='records'):
+            sample_records.append({k: to_python_scalar(v) for k, v in record.items()})
+
         schema = {
             'columns': list(df.columns),
-            'dtypes': df.dtypes.to_dict(),
-            'sample': df.head(3).to_dict()
+            'dtypes': {col: str(dtype) for col, dtype in df.dtypes.items()},
+            'sample': sample_records
         }
         logger.info(f"[CSV Tool] Schema retrieved: {schema}")
         return {"schema_description": schema}
@@ -118,8 +142,8 @@ def interpret_query_with_schema(query, schema):
         elif result["chart_type"] in ["histogram", "box"]:
             # For these charts, prefer numeric columns
             numeric_cols = [
-                col for col, dtype in schema['dtypes'].items() 
-                if pd.api.types.is_numeric_dtype(dtype)
+                col for col in schema['columns'] 
+                if pd.api.types.is_numeric_dtype(df[col].dtype)
             ]
             if numeric_cols:
                 columns = [numeric_cols[0]]
@@ -127,8 +151,8 @@ def interpret_query_with_schema(query, schema):
         elif result["chart_type"] == "scatter":
             # For scatter plots, try to find two numeric columns
             numeric_cols = [
-                col for col, dtype in schema['dtypes'].items() 
-                if pd.api.types.is_numeric_dtype(dtype)
+                col for col in schema['columns'] 
+                if pd.api.types.is_numeric_dtype(df[col].dtype)
             ]
             if len(numeric_cols) >= 2:
                 columns = numeric_cols[:2]
@@ -209,6 +233,16 @@ def execute_task_on_df(parsed_task):
         logger.error(f"Error executing task: {str(e)}")
         return df[columns].head(10)  # Fallback to simple table
 
+# Custom JSON encoder for numpy types
+class NumpyEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, np.ndarray):
+            return obj.tolist()
+        if isinstance(obj, np.generic):
+            return obj.item()
+        return super().default(obj)
+
+
 def generate_dash_components(result_df, parsed_task=None):
     """Generate Dash visualization components based on the query results"""
     if parsed_task is None:
@@ -259,8 +293,8 @@ def generate_dash_components(result_df, parsed_task=None):
             return html.Table([
                 html.Thead(html.Tr([html.Th(col) for col in result_df.columns])),
                 html.Tbody([
-                    html.Tr([html.Td(result_df.iloc[i][col]) for col in result_df.columns])
-                    for i in range(len(result_df))
+                    html.Tr([html.Td(str(result_df.iloc[i][col])) for col in result_df.columns])
+                    for i in range(min(10, len(result_df)))
                 ])
             ])
         
@@ -278,17 +312,128 @@ def generate_dash_components(result_df, parsed_task=None):
         return html.Table([
             html.Thead(html.Tr([html.Th(col) for col in result_df.columns])),
             html.Tbody([
-                html.Tr([html.Td(result_df.iloc[i][col]) for col in result_df.columns])
+                html.Tr([html.Td(str(result_df.iloc[i][col])) for col in result_df.columns])
                 for i in range(min(10, len(result_df)))
             ])
         ])
+
+def generate_chart_image(result_df, parsed_task):
+    """Generate a matplotlib/seaborn chart and return as base64 encoded image"""
+    try:
+        chart_type = parsed_task["chart_type"]
+        columns = parsed_task["columns"]
+        aggregation = parsed_task.get("aggregation")
+        group_by = parsed_task.get("group_by")
+        
+        # Set up the plot
+        plt.figure(figsize=(10, 6))
+        
+        if chart_type == "bar":
+            x_col = group_by if group_by else columns[0]
+            y_col = columns[0] if group_by else "count"
+            title = f"Bar Chart of {y_col} by {x_col}" if group_by else f"Bar Chart of {x_col}"
+            
+            if group_by:
+                sns.barplot(data=result_df, x=x_col, y=y_col)
+            else:
+                result_df[x_col].value_counts().plot(kind='bar')
+            plt.title(title)
+            plt.xticks(rotation=45)
+            plt.tight_layout()
+            
+        elif chart_type == "pie":
+            names_col = group_by if group_by else columns[0]
+            values_col = columns[0] if group_by else "count"
+            title = f"Distribution of {values_col} by {names_col}"
+            
+            if group_by:
+                plt.pie(result_df[values_col], labels=result_df[names_col], autopct='%1.1f%%')
+            else:
+                value_counts = result_df[names_col].value_counts()
+                plt.pie(value_counts.values, labels=value_counts.index, autopct='%1.1f%%')
+            plt.title(title)
+            
+        elif chart_type == "line":
+            x_col = group_by if group_by else columns[0]
+            y_col = columns[0] if group_by else "count"
+            title = f"Trend of {y_col} by {x_col}"
+            
+            if group_by:
+                sns.lineplot(data=result_df, x=x_col, y=y_col)
+            else:
+                result_df[x_col].value_counts().sort_index().plot(kind='line')
+            plt.title(title)
+            plt.xticks(rotation=45)
+            plt.tight_layout()
+            
+        elif chart_type == "scatter":
+            if len(columns) >= 2:
+                plt.scatter(result_df[columns[0]], result_df[columns[1]])
+                plt.xlabel(columns[0])
+                plt.ylabel(columns[1])
+                plt.title(f"Scatter Plot: {columns[1]} vs {columns[0]}")
+            else:
+                plt.scatter(range(len(result_df)), result_df[columns[0]])
+                plt.ylabel(columns[0])
+                plt.title(f"Scatter Plot of {columns[0]}")
+            plt.tight_layout()
+            
+        elif chart_type == "histogram":
+            plt.hist(result_df[columns[0]], bins=20, edgecolor='black')
+            plt.xlabel(columns[0])
+            plt.ylabel('Frequency')
+            plt.title(f"Distribution of {columns[0]}")
+            plt.tight_layout()
+            
+        elif chart_type == "box":
+            plt.boxplot(result_df[columns[0]])
+            plt.ylabel(columns[0])
+            plt.title(f"Box Plot of {columns[0]}")
+            plt.tight_layout()
+            
+        else:  # Default to table - create a text representation
+            plt.figure(figsize=(12, 8))
+            plt.axis('off')
+            table_data = result_df.head(10).values.tolist()
+            table_data.insert(0, list(result_df.columns))
+            
+            table = plt.table(cellText=table_data, loc='center', cellLoc='center')
+            table.auto_set_font_size(False)
+            table.set_fontsize(9)
+            table.scale(1.2, 1.5)
+            plt.title("Data Table")
+        
+        # Convert plot to base64 image
+        img_buffer = io.BytesIO()
+        plt.savefig(img_buffer, format='png', dpi=300, bbox_inches='tight')
+        img_buffer.seek(0)
+        img_base64 = base64.b64encode(img_buffer.getvalue()).decode()
+        plt.close()
+        
+        return img_base64
+        
+    except Exception as e:
+        logger.error(f"Error generating chart image: {str(e)}")
+        # Return a simple error image
+        plt.figure(figsize=(8, 6))
+        plt.text(0.5, 0.5, f'Error generating chart: {str(e)}', 
+                ha='center', va='center', transform=plt.gca().transAxes)
+        plt.axis('off')
+        
+        img_buffer = io.BytesIO()
+        plt.savefig(img_buffer, format='png', dpi=300, bbox_inches='tight')
+        img_buffer.seek(0)
+        img_base64 = base64.b64encode(img_buffer.getvalue()).decode()
+        plt.close()
+        
+        return img_base64
 
 def run_dash_query(input: Optional[dict] = None) -> dict:
     """
     Args:
         input (dict): A dictionary with a natural language query provided by the model.
     Returns:
-        dict: A Dash-compatible output or error message.
+        dict: A serializable visualization result with metadata and data.
     """
     user_query = input.get("query")
 
@@ -308,12 +453,99 @@ def run_dash_query(input: Optional[dict] = None) -> dict:
         # Step 3: Execute task on DataFrame
         result_df = execute_task_on_df(parsed_task)
 
-        # Step 4: Generate Dash components
-        dash_output = generate_dash_components(result_df, parsed_task)
+        # Step 4: Generate visualization data
+        chart_type = parsed_task["chart_type"]
+        columns = parsed_task["columns"]
+        aggregation = parsed_task.get("aggregation")
+        group_by = parsed_task.get("group_by")
+        
+        # Create serializable response
+        if chart_type == "table":
+            # For tables, return the data directly
+            safe_df = result_df.where(pd.notnull(result_df), None)
+            rows = []
+            for rec in safe_df.to_dict(orient="records"):
+                rows.append({k: to_python_scalar(v) for k, v in rec.items()})
+            
+            # Generate table image
+            table_image = generate_chart_image(result_df, parsed_task)
+            
+            return {
+                "visualization_type": "table",
+                "columns": list(result_df.columns),
+                "data": rows,
+                "chart_image": table_image,
+                "query_info": {
+                    "chart_type": chart_type,
+                    "columns_used": columns,
+                    "aggregation": aggregation,
+                    "group_by": group_by
+                }
+            }
+        else:
+            # For charts, generate the figure and extract data
+            if chart_type == "bar":
+                x_col = group_by if group_by else columns[0]
+                y_col = columns[0] if group_by else "count"
+                title = f"Bar Chart of {y_col} by {x_col}" if group_by else f"Bar Chart of {x_col}"
+                fig = px.bar(result_df, x=x_col, y=y_col, title=title)
+                
+            elif chart_type == "pie":
+                names_col = group_by if group_by else columns[0]
+                values_col = columns[0] if group_by else "count"
+                title = f"Distribution of {values_col} by {names_col}"
+                fig = px.pie(result_df, names=names_col, values=values_col, title=title)
+                
+            elif chart_type == "line":
+                x_col = group_by if group_by else columns[0]
+                y_col = columns[0] if group_by else "count"
+                title = f"Trend of {y_col} by {x_col}"
+                fig = px.line(result_df, x=x_col, y=y_col, title=title)
+                
+            elif chart_type == "scatter":
+                if len(columns) >= 2:
+                    fig = px.scatter(result_df, x=columns[0], y=columns[1],
+                                   title=f"Scatter Plot: {columns[1]} vs {columns[0]}")
+                else:
+                    fig = px.scatter(result_df, x=columns[0], y="count",
+                                   title=f"Scatter Plot of {columns[0]}")
+                    
+            elif chart_type == "histogram":
+                fig = px.histogram(result_df, x=columns[0],
+                                 title=f"Distribution of {columns[0]}")
+                
+            elif chart_type == "box":
+                fig = px.box(result_df, y=columns[0],
+                            title=f"Box Plot of {columns[0]}")
+            
+            # Add common layout settings
+            fig.update_layout(
+                margin=dict(l=40, r=40, t=40, b=40),
+                hovermode='closest'
+            )
+            
+            # Convert to serializable format
+            figure_dict = json.loads(json.dumps(fig.to_dict(), cls=NumpyEncoder))
+            
+            # Generate chart image
+            chart_image = generate_chart_image(result_df, parsed_task)
+            
+            return {
+                "visualization_type": "chart",
+                "chart_type": chart_type,
+                "figure_data": figure_dict,
+                "chart_image": chart_image,
+                "raw_data": result_df.where(pd.notnull(result_df), None).to_dict(orient="records"),
+                "query_info": {
+                    "chart_type": chart_type,
+                    "columns_used": columns,
+                    "aggregation": aggregation,
+                    "group_by": group_by
+                }
+            }
 
-        logger.info(f"[Dash Tool] Dash Output generated.")
+        logger.info(f"[Dash Tool] Visualization data generated.")
 
-        return {"dash_output": dash_output}
     except Exception as ex:
         logger.error(f"[Dash Tool] Error: {str(ex)}")
         return {"error": str(ex)}
