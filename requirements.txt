@@ -4,4 +4,6 @@ pandas==2.2.2
 numpy==1.26.4
 Flask==3.0.3
 plotly==5.22.0
+matplotlib>=3.10.0
+seaborn>=0.13.0
 # google-adk is not required and should not be added here.
