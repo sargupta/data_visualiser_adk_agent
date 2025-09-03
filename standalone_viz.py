@@ -362,7 +362,12 @@ def run_dash_query(input: Optional[dict] = None) -> dict:
     Returns:
         dict: A serializable visualization result with metadata and data.
     """
+    if input is None:
+        return {"error": "Input cannot be None"}
+    
     user_query = input.get("query")
+    if not user_query:
+        return {"error": "Query is required"}
 
     logger.info(f"[Dash Tool] User Query: {user_query}")
 
